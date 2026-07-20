@@ -1,4 +1,4 @@
-# minicompiler
+
 # Mini Compiler for a Simple Programming Language
 
 A Python implementation of a mini compiler demonstrating the core phases
