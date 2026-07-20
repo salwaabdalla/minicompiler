@@ -1,0 +1,93 @@
+============================================================
+PHASE 1: LEXICAL ANALYSIS
+============================================================
+  KEYWORD    int
+  ID         a
+  OP         =
+  INT        10
+  DELIM      ;
+  KEYWORD    int
+  ID         b
+  OP         =
+  INT        20
+  DELIM      ;
+  KEYWORD    int
+  ID         c
+  DELIM      ;
+  ID         c
+  OP         =
+  ID         a
+  OP         +
+  ID         b
+  DELIM      ;
+  KEYWORD    if
+  DELIM      (
+  ID         c
+  OP         >
+  INT        20
+  DELIM      )
+  DELIM      {
+  KEYWORD    print
+  DELIM      (
+  ID         c
+  DELIM      )
+  DELIM      ;
+  DELIM      }
+Lexical analysis completed successfully.
+
+============================================================
+PHASE 2: SYNTAX ANALYSIS
+============================================================
+Syntax analysis completed successfully. AST built.
+
+============================================================
+PHASE 3 & 4: SYMBOL TABLE + SEMANTIC ANALYSIS
+============================================================
+Name      Type      Scope     InitValue
+---------------------------------------------
+a         int       global    10
+b         int       global    20
+c         int       global    None
+Semantic analysis completed successfully.
+
+============================================================
+PHASE 5: INTERMEDIATE CODE GENERATION (TAC)
+============================================================
+  a = 10
+  b = 20
+  t1 = a + b
+  c = t1
+  t2 = c > 20
+  ifFalse t2 goto L1
+  print c
+  goto L2
+  L1:
+  L2:
+
+============================================================
+PHASE 6: CODE OPTIMIZATION
+============================================================
+Before optimization:
+  a = 10
+  b = 20
+  t1 = a + b
+  c = t1
+  t2 = c > 20
+  ifFalse t2 goto L1
+  print c
+  goto L2
+  L1:
+  L2:
+
+After optimization:
+  a = 10
+  b = 20
+  c = 30
+  t2 = 30 > 20
+  ifFalse t2 goto L1
+  print 30
+  goto L2
+  L1:
+  L2:
+
+Optimizations applied: Constant Folding, Dead Code Elimination
